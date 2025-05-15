@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://oa6vmblx6e6l"]
+
+[ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_2ivvv"]
+[ext_resource type="Texture2D" uid="uid://c0pa4g3k31bcc" path="res://sprites/decks/anglo.png" id="2_amoyf"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 1280.0
+offset_bottom = 198.0
+theme_override_fonts/normal_font = ExtResource("1_2ivvv")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[wave amp=80 freq=3 connected=0][center]The Solitaire Trilogy[/center]"
+fit_content = true
+
+[node name="Klondike" type="Button" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 256.0
+offset_right = 864.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("1_2ivvv")
+theme_override_font_sizes/font_size = 60
+text = "🐻‍❄️ Klondike 🐻‍❄️"
+
+[node name="FreeCell" type="Button" parent="."]
+offset_left = 416.0
+offset_top = 416.0
+offset_right = 864.0
+offset_bottom = 512.0
+theme_override_fonts/font = ExtResource("1_2ivvv")
+theme_override_font_sizes/font_size = 60
+text = "👑 FreeCell 👑"
+
+[node name="Spider" type="Button" parent="."]
+offset_left = 416.0
+offset_top = 576.0
+offset_right = 864.0
+offset_bottom = 672.0
+theme_override_fonts/font = ExtResource("1_2ivvv")
+theme_override_font_sizes/font_size = 60
+text = "🕸️ Spider 🕸️"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1152.0
+offset_top = 32.0
+offset_right = 1242.0
+offset_bottom = 123.0
+theme_override_font_sizes/font_size = 60
+text = "⚙️"
+
+[node name="card1" type="Sprite2D" parent="."]
+position = Vector2(96, 288)
+texture = ExtResource("2_amoyf")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 311)
+
+[node name="card2" type="Sprite2D" parent="."]
+position = Vector2(992, 288)
+texture = ExtResource("2_amoyf")
+centered = false
+region_enabled = true
+region_rect = Rect2(2400, 622, 200, 311)
