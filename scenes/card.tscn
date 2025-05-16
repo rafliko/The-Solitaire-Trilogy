@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxij5jpdnpk3p"]
+
+[ext_resource type="Texture2D" uid="uid://c0pa4g3k31bcc" path="res://sprites/decks/anglo.png" id="1_grwcr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8xvw"]
+size = Vector2(200, 300)
+
+[node name="card" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_grwcr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 300)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(100, 150)
+shape = SubResource("RectangleShape2D_t8xvw")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0nccjelurdr"]
+
+[ext_resource type="Texture2D" uid="uid://bregx63wyjswx" path="res://sprites/cell.png" id="1_o780t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukg7v"]
+size = Vector2(200, 300)
+
+[node name="cell" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_o780t")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(100, 150)
+shape = SubResource("RectangleShape2D_ukg7v")
