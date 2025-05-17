@@ -1,3 +1,108 @@
-[gd_scene format=3 uid="uid://1sx7fp2esk1p"]
+[gd_scene load_steps=7 format=3 uid="uid://1sx7fp2esk1p"]
+
+[ext_resource type="PackedScene" uid="uid://d0nccjelurdr" path="res://scenes/cell.tscn" id="1_0jsml"]
+[ext_resource type="Script" path="res://scripts/freecell.gd" id="1_n6f6j"]
+[ext_resource type="Texture2D" uid="uid://d3nvcsx62vhjk" path="res://sprites/cell_ace.png" id="2_1or1l"]
+[ext_resource type="PackedScene" uid="uid://o0y5aak1vqn3" path="res://scenes/settings_button.tscn" id="3_mwhnw"]
+[ext_resource type="FontFile" uid="uid://c6wrvggt3r2q7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Regular.ttf" id="4_vrurw"]
+[ext_resource type="FontFile" uid="uid://6sw40coudvm1" path="res://fonts/Crimson_Pro/static/CrimsonPro-BoldItalic.ttf" id="6_2m7ea"]
 
 [node name="freecell" type="Node2D"]
+script = ExtResource("1_n6f6j")
+
+[node name="columns" type="Node2D" parent="."]
+
+[node name="col1" parent="columns" groups=["columns"] instance=ExtResource("1_0jsml")]
+position = Vector2(32, 224)
+
+[node name="col2" parent="columns" groups=["columns"] instance=ExtResource("1_0jsml")]
+position = Vector2(160, 224)
+
+[node name="col3" parent="columns" groups=["columns"] instance=ExtResource("1_0jsml")]
+position = Vector2(288, 224)
+
+[node name="col4" parent="columns" groups=["columns"] instance=ExtResource("1_0jsml")]
+position = Vector2(416, 224)
+
+[node name="col5" parent="columns" groups=["columns"] instance=ExtResource("1_0jsml")]
+position = Vector2(544, 224)
+
+[node name="col6" parent="columns" groups=["columns"] instance=ExtResource("1_0jsml")]
+position = Vector2(672, 224)
+
+[node name="col7" parent="columns" groups=["columns"] instance=ExtResource("1_0jsml")]
+position = Vector2(800, 224)
+
+[node name="col8" parent="columns" groups=["columns"] instance=ExtResource("1_0jsml")]
+position = Vector2(928, 224)
+
+[node name="freecells" type="Node2D" parent="."]
+position = Vector2(32, 32)
+
+[node name="fc1" parent="freecells" groups=["freecells"] instance=ExtResource("1_0jsml")]
+
+[node name="fc2" parent="freecells" groups=["freecells"] instance=ExtResource("1_0jsml")]
+position = Vector2(128, 0)
+
+[node name="fc3" parent="freecells" groups=["freecells"] instance=ExtResource("1_0jsml")]
+position = Vector2(256, 0)
+
+[node name="fc4" parent="freecells" groups=["freecells"] instance=ExtResource("1_0jsml")]
+position = Vector2(384, 0)
+
+[node name="foundations" type="Node2D" parent="."]
+
+[node name="ac1" parent="foundations" groups=["foundations"] instance=ExtResource("1_0jsml")]
+position = Vector2(544, 32)
+texture = ExtResource("2_1or1l")
+
+[node name="ac2" parent="foundations" groups=["foundations"] instance=ExtResource("1_0jsml")]
+position = Vector2(672, 32)
+texture = ExtResource("2_1or1l")
+
+[node name="ac3" parent="foundations" groups=["foundations"] instance=ExtResource("1_0jsml")]
+position = Vector2(800, 32)
+texture = ExtResource("2_1or1l")
+
+[node name="ac4" parent="foundations" groups=["foundations"] instance=ExtResource("1_0jsml")]
+position = Vector2(928, 32)
+texture = ExtResource("2_1or1l")
+
+[node name="timer" type="Label" parent="."]
+offset_left = 1088.0
+offset_top = 608.0
+offset_right = 1248.0
+offset_bottom = 672.0
+theme_override_fonts/font = ExtResource("4_vrurw")
+theme_override_font_sizes/font_size = 50
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="settings_button" parent="." instance=ExtResource("3_mwhnw")]
+offset_left = 1152.0
+offset_top = 32.0
+offset_right = 1248.0
+offset_bottom = 128.0
+
+[node name="solve_button" type="Button" parent="."]
+offset_left = 1088.0
+offset_top = 480.0
+offset_right = 1248.0
+offset_bottom = 576.0
+theme_override_fonts/font = ExtResource("4_vrurw")
+theme_override_font_sizes/font_size = 40
+text = "SOLVE"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 192.0
+offset_top = 448.0
+offset_right = 896.0
+offset_bottom = 640.0
+theme_override_fonts/normal_font = ExtResource("6_2m7ea")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[wave amp=100 connected=0]YOU WIN!"
+
+[connection signal="pressed" from="solve_button" to="." method="_on_solve_button_pressed"]

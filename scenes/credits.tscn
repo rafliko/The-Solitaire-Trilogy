@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://by0ihd2bid8gf"]
 
 [ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_gxw7t"]
-[ext_resource type="PackedScene" uid="uid://bctt2oxm20xc" path="res://scenes/exit_button.tscn" id="1_kmp6f"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_jbth0"]
 
 [node name="credits" type="Control"]
 layout_mode = 3
@@ -10,15 +10,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jbth0")
 
-[node name="exit_button" parent="." instance=ExtResource("1_kmp6f")]
+[node name="exit_button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1120.0
+offset_left = 1152.0
 offset_top = 32.0
 offset_right = 1248.0
-offset_bottom = 160.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 40
+text = " ❌ "
 
 [node name="credits" type="Label" parent="."]
+layout_mode = 0
 offset_left = 480.0
 offset_top = 32.0
 offset_right = 776.0
@@ -29,6 +33,7 @@ text = "Credits"
 horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 192.0
 offset_right = 1248.0
@@ -152,3 +157,5 @@ https://gallica.bnf.fr/ark:/12148/btv1b105093277
 
 
 -------------------------------------------------------------------------------------"
+
+[connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]

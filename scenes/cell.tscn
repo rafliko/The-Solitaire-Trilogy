@@ -13,5 +13,6 @@ centered = false
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(100, 150)
 shape = SubResource("RectangleShape2D_ukg7v")

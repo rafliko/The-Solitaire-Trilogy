@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://oa6vmblx6e6l"]
+[gd_scene load_steps=5 format=3 uid="uid://oa6vmblx6e6l"]
 
 [ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_2ivvv"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_lo5up"]
 [ext_resource type="Texture2D" uid="uid://c0pa4g3k31bcc" path="res://sprites/decks/anglo.png" id="2_amoyf"]
+[ext_resource type="PackedScene" uid="uid://o0y5aak1vqn3" path="res://scenes/settings_button.tscn" id="4_jlvex"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -54,15 +55,6 @@ theme_override_fonts/font = ExtResource("1_2ivvv")
 theme_override_font_sizes/font_size = 60
 text = "🕸️ Spider 🕸️"
 
-[node name="settings" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1120.0
-offset_top = 32.0
-offset_right = 1248.0
-offset_bottom = 160.0
-theme_override_font_sizes/font_size = 60
-text = " ⚙️ "
-
 [node name="card1" type="Sprite2D" parent="."]
 position = Vector2(96, 288)
 texture = ExtResource("2_amoyf")
@@ -77,4 +69,11 @@ centered = false
 region_enabled = true
 region_rect = Rect2(2400, 600, 200, 300)
 
-[connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]
+[node name="settings_button" parent="." instance=ExtResource("4_jlvex")]
+layout_mode = 0
+offset_left = 1152.0
+offset_top = 32.0
+offset_right = 1248.0
+offset_bottom = 128.0
+
+[connection signal="pressed" from="freecell" to="." method="_on_freecell_pressed"]

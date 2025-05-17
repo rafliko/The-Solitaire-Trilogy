@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnb37gs7j3m0l"]
+[gd_scene load_steps=6 format=3 uid="uid://dnb37gs7j3m0l"]
 
 [ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_otm1p"]
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_q6dhs"]
-[ext_resource type="PackedScene" uid="uid://bctt2oxm20xc" path="res://scenes/exit_button.tscn" id="2_t2dcy"]
 [ext_resource type="Texture2D" uid="uid://dtfwcb0sb1nys" path="res://sprites/decks/anglo_thumb.png" id="2_wgrb7"]
 [ext_resource type="Texture2D" uid="uid://cqplbnmb605lq" path="res://sprites/decks/adler_thumb.png" id="3_esysf"]
 [ext_resource type="Texture2D" uid="uid://bqi0pn5ofbvyi" path="res://sprites/decks/atlasnye_thumb.png" id="4_tg80b"]
@@ -15,13 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q6dhs")
-
-[node name="exit_button" parent="." instance=ExtResource("2_t2dcy")]
-layout_mode = 0
-offset_left = 1120.0
-offset_top = 32.0
-offset_right = 1248.0
-offset_bottom = 160.0
 
 [node name="settings" type="Label" parent="."]
 layout_mode = 0
@@ -37,9 +29,9 @@ horizontal_alignment = 1
 [node name="deck_style" type="Label" parent="."]
 layout_mode = 0
 offset_left = 288.0
-offset_top = 224.0
-offset_right = 544.0
-offset_bottom = 320.0
+offset_top = 192.0
+offset_right = 557.0
+offset_bottom = 288.0
 theme_override_fonts/font = ExtResource("1_otm1p")
 theme_override_font_sizes/font_size = 66
 text = "Deck style: "
@@ -65,12 +57,32 @@ popup/item_2/id = 2
 [node name="credits" type="Button" parent="."]
 layout_mode = 0
 offset_left = 288.0
-offset_top = 384.0
+offset_top = 576.0
 offset_right = 992.0
-offset_bottom = 480.0
+offset_bottom = 672.0
 theme_override_fonts/font = ExtResource("1_otm1p")
 theme_override_font_sizes/font_size = 60
 text = "Credits"
 
+[node name="menu" type="Button" parent="."]
+offset_left = 288.0
+offset_top = 448.0
+offset_right = 992.0
+offset_bottom = 544.0
+theme_override_fonts/font = ExtResource("1_otm1p")
+theme_override_font_sizes/font_size = 60
+text = "Back to menu"
+
+[node name="resume" type="Button" parent="."]
+offset_left = 288.0
+offset_top = 320.0
+offset_right = 992.0
+offset_bottom = 416.0
+theme_override_fonts/font = ExtResource("1_otm1p")
+theme_override_font_sizes/font_size = 60
+text = "Resume"
+
 [connection signal="item_selected" from="deck_style/deck_style_option" to="." method="_on_deck_style_option_item_selected"]
 [connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
