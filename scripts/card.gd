@@ -7,6 +7,7 @@ var new_parent = null
 var value = 0
 var suit = 0
 var isdark = false
+var move_to_foundation = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +18,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if dragging:
 		global_position = get_global_mouse_position() - mouse_offset
+	if move_to_foundation:
+		new_parent = null
+		dragging = false
+		position += position.direction_to(Vector2.ZERO) * delta * 4000
+		if abs(position) < Vector2(20,20): 
+			position = Vector2.ZERO
+			move_to_foundation = false
+			get_node("/root/"+Globals.current_game).block_autosolve = false
 
 
 func _on_button_button_down() -> void:

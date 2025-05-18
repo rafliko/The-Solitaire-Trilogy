@@ -68,7 +68,7 @@ texture = ExtResource("2_1or1l")
 position = Vector2(928, 32)
 texture = ExtResource("2_1or1l")
 
-[node name="timer" type="Label" parent="."]
+[node name="timer_label" type="Label" parent="."]
 offset_left = 1088.0
 offset_top = 608.0
 offset_right = 1248.0
@@ -85,16 +85,7 @@ offset_top = 32.0
 offset_right = 1248.0
 offset_bottom = 128.0
 
-[node name="solve_button" type="Button" parent="."]
-offset_left = 1088.0
-offset_top = 480.0
-offset_right = 1248.0
-offset_bottom = 576.0
-theme_override_fonts/font = ExtResource("4_vrurw")
-theme_override_font_sizes/font_size = 40
-text = "SOLVE"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="youwin" type="RichTextLabel" parent="."]
 visible = false
 offset_left = 192.0
 offset_top = 448.0
@@ -105,4 +96,7 @@ theme_override_font_sizes/normal_font_size = 150
 bbcode_enabled = true
 text = "[wave amp=100 connected=0]YOU WIN!"
 
-[connection signal="pressed" from="solve_button" to="." method="_on_solve_button_pressed"]
+[node name="timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

@@ -5,6 +5,9 @@ var card_scene = preload("res://scenes/card.tscn")
 
 var open_freecells = 4
 var open_columns = 0
+var min_foundation = 0
+var block_autosolve = false
+var t = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,45 +42,56 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var count = 0
+func _process(delta: float) -> void:	
+	# Count open columns
+	var colcount = 0
 	for c in $columns.get_children():
-		if c.get_child_count() == 1: count+=1
-	open_columns = count
+		if c.get_child_count() == 1: colcount+=1
+	open_columns = colcount
 	
-	count = 0
+	# Count open freecells
+	var fccount = 0
 	for c in $freecells.get_children():
-		if c.get_child_count() == 1: count+=1
-	open_freecells = count
+		if c.get_child_count() == 1: fccount+=1
+	open_freecells = fccount	
 	
-	count = 0
-	for c in $columns.get_children():
-		if c.get_child_count() == 1 or validate_sequence(c.get_child(1)): count+=1
-	if count == 8:
-		$solve_button.visible = true
+	# Get the lowest value in foundations
+	var min = 20
+	for f in $foundations.get_children():
+		if f.get_child_count() > 1:
+			if count_sequence(f.get_child(1),1) < min:
+				min = count_sequence(f.get_child(1),1)
+		else: min = 0
+	min_foundation = min
 	
+	# Look for cards to automatically move to foundation
+	if not block_autosolve: autosolve()
+	
+	# Check for win
+	check_win()
 
 func validate_move(target: Node, parent_card: Node) -> bool:
-	if ((target.is_in_group("cards") and count_sequence(parent_card, 1) > pow(2,open_columns) * (open_freecells+1)) or
-		(target.is_in_group("columns") and count_sequence(parent_card, 1) > pow(2,open_columns-1) * (open_freecells+1)) or 
-		target.is_in_group("freecell_cards")):
+	if ((target.is_in_group("cards") and count_sequence(parent_card, 1) > pow(2,open_columns) * (open_freecells+1)) or # Too many cards in sequence (moving to card)
+		(target.is_in_group("columns") and count_sequence(parent_card, 1) > pow(2,open_columns-1) * (open_freecells+1)) or # Too many cards in sequence (moving to column)
+		target.is_in_group("freecell_cards")): # Placed on card in freecell slot
 		return false
 	
-	if ((target.get_child_count() < 3 and target.is_in_group("cards") and target.value == parent_card.value+1 and target.isdark != parent_card.isdark) or
-		(target.is_in_group("columns") and target.get_child_count() == 1) or 
-		(target.is_in_group("freecells") and target.get_child_count() == 1 and parent_card.get_child_count() < 3)):
+	if ((target.get_child_count() < 3 and target.is_in_group("cards") and target.value == parent_card.value+1 and target.isdark != parent_card.isdark) or # All value and suit requirements met
+		(target.is_in_group("columns") and target.get_child_count() == 1)): # Empty column
 		return true
-	elif (parent_card.get_child_count() < 3 and 
-		  ((target.is_in_group("foundations") and parent_card.value == 0) or 
-		  (target.is_in_group("foundation_cards") and target.value == parent_card.value-1 and target.suit == parent_card.suit))):
-		return true
-	else: 
-		return false
+	
+	if parent_card.get_child_count() < 3: # Single card
+		if ((target.is_in_group("foundations") and parent_card.value == 0) or # Placed ace on foundation
+			(target.is_in_group("foundation_cards") and target.value == parent_card.value-1 and target.suit == parent_card.suit) or # Placed on lower foundation card
+			(target.is_in_group("freecells") and target.get_child_count() == 1 )): # Placed on empty freecell
+			return true
+	
+	return false
 
 
 func validate_sequence(parent_card: Node) -> bool:
-	if parent_card.is_in_group("foundation_cards"): return false
-	if parent_card.get_child_count() > 2:
+	if parent_card.is_in_group("foundation_cards"): return false # Can't move foundation cards
+	if parent_card.get_child_count() > 2: # More than 1 card
 		if ((parent_card.isdark != parent_card.get_child(2).isdark) and 
 			(parent_card.value == parent_card.get_child(2).value+1)):
 			return validate_sequence(parent_card.get_child(2))
@@ -94,7 +108,42 @@ func count_sequence(parent_card: Node, depth: int) -> int:
 		return depth
 
 
-func _on_solve_button_pressed() -> void:
+func get_top_card(parent_card: Node) -> Node:
+	if parent_card.get_child_count() > 2:
+		return get_top_card(parent_card.get_child(2))
+	else:
+		return parent_card
+
+
+func autosolve() -> void:
 	for c in get_tree().get_nodes_in_group("cards"):
-		c.queue_free()
-	$RichTextLabel.visible = true
+		if !c.is_in_group("foundation_cards") and c.get_child_count() < 3:
+			if c.value == min_foundation:
+				block_autosolve = true
+				if $foundations.get_child(c.suit).get_child_count() > 1:
+					c.reparent(get_top_card($foundations.get_child(c.suit).get_child(1)))
+				else:
+					c.reparent($foundations.get_child(c.suit))
+				c.remove_from_group("freecell_cards")
+				c.add_to_group("foundation_cards")
+				c.move_to_foundation = true
+				return
+
+
+func check_win() -> void:
+	var count = 0
+	for f in $foundations.get_children():
+		if f.get_child_count()>1 and count_sequence(f.get_child(1), 1) == 13:
+			count+=1
+	if count == 4:
+		$youwin.visible = true
+		$timer.stop()
+
+
+func _on_timer_timeout() -> void:
+	var a = ""
+	var b = ""
+	t += 1
+	if int(t/60) < 10: a = "0"
+	if int(t%60) < 10: b = "0"
+	$timer_label.text = a + str(int(t/60)) + ":" + b + str(t%60)
