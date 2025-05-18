@@ -3,11 +3,11 @@ extends Sprite2D
 var dragging = false
 var mouse_offset = Vector2.ZERO
 var new_parent = null
-
-var value = 0
-var suit = 0
-var isdark = false
 var move_to_foundation = false
+
+@export var value = 0
+@export var suit = 0
+@export var isdark = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,17 +42,24 @@ func _on_button_button_up() -> void:
 	
 	if get_parent() != null:
 		if get_parent().is_in_group("foundations") or get_parent().is_in_group("foundation_cards"):
+			remove_from_group("cards")
 			remove_from_group("freecell_cards")
 			add_to_group("foundation_cards")
 			position = Vector2.ZERO
 		elif get_parent().is_in_group("freecells"):
+			remove_from_group("cards")
 			add_to_group("freecell_cards")
+			remove_from_group("foundation_cards")
 			position = Vector2.ZERO
 		elif get_parent().is_in_group("cards"): 
+			add_to_group("cards")
 			remove_from_group("freecell_cards")
+			remove_from_group("foundation_cards")
 			position = Vector2(0, Globals.default_offset)
 		else: 
+			add_to_group("cards")
 			remove_from_group("freecell_cards")
+			remove_from_group("foundation_cards")
 			position = Vector2.ZERO
 	z_index = 0
 	dragging = false

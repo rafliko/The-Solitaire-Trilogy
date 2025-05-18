@@ -7,12 +7,14 @@ var open_freecells = 4
 var open_columns = 0
 var min_foundation = 0
 var block_autosolve = false
-var t = 0
+@export var t = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$timer.start()
+	if FileAccess.file_exists("user://saved_freecell.tscn"): return
+		
 	# Create and shuffle deck
-	Globals.current_game = "freecell"
 	for i in range(13):
 		for j in range(4):
 			deck.push_back({"value":i, "suit":j})
@@ -70,6 +72,7 @@ func _process(delta: float) -> void:
 	# Check for win
 	check_win()
 
+
 func validate_move(target: Node, parent_card: Node) -> bool:
 	if ((target.is_in_group("cards") and count_sequence(parent_card, 1) > pow(2,open_columns) * (open_freecells+1)) or # Too many cards in sequence (moving to card)
 		(target.is_in_group("columns") and count_sequence(parent_card, 1) > pow(2,open_columns-1) * (open_freecells+1)) or # Too many cards in sequence (moving to column)
@@ -116,14 +119,17 @@ func get_top_card(parent_card: Node) -> Node:
 
 
 func autosolve() -> void:
-	for c in get_tree().get_nodes_in_group("cards"):
-		if !c.is_in_group("foundation_cards") and c.get_child_count() < 3:
+	for c in get_tree().get_nodes_in_group("cards") + get_tree().get_nodes_in_group("freecell_cards"):
+		if c.get_child_count() < 3:
 			if c.value == min_foundation:
 				block_autosolve = true
 				if $foundations.get_child(c.suit).get_child_count() > 1:
-					c.reparent(get_top_card($foundations.get_child(c.suit).get_child(1)))
+					var new_parent = get_top_card($foundations.get_child(c.suit).get_child(1))
+					if new_parent != c:
+						c.reparent(new_parent)
 				else:
 					c.reparent($foundations.get_child(c.suit))
+				c.remove_from_group("cards")
 				c.remove_from_group("freecell_cards")
 				c.add_to_group("foundation_cards")
 				c.move_to_foundation = true
@@ -140,10 +146,33 @@ func check_win() -> void:
 		$timer.stop()
 
 
+func save() -> void:
+	var scene = PackedScene.new()
+	for c in get_tree().get_nodes_in_group("cards"):
+		c.set_owner(self)
+	for c in get_tree().get_nodes_in_group("foundation_cards"):
+		c.set_owner(self)
+	for c in get_tree().get_nodes_in_group("freecell_cards"):
+		c.set_owner(self)
+	scene.pack(self);
+	ResourceSaver.save(scene, "user://saved_freecell.tscn")
+
+
 func _on_timer_timeout() -> void:
 	var a = ""
 	var b = ""
 	t += 1
+	if t%10==1: save() # Autosave every 10 seconds
 	if int(t/60) < 10: a = "0"
 	if int(t%60) < 10: b = "0"
 	$timer_label.text = a + str(int(t/60)) + ":" + b + str(t%60)
+	
+
+func _on_settings_button_pressed() -> void:
+	save()
+	get_tree().change_scene_to_file("res://scenes/settings.tscn")
+
+
+func _on_restart_button_pressed() -> void:
+	DirAccess.remove_absolute("user://saved_freecell.tscn")
+	get_tree().change_scene_to_file("res://scenes/freecell.tscn")

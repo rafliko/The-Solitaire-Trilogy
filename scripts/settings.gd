@@ -15,6 +15,9 @@ func _process(delta: float) -> void:
 
 func _on_deck_style_option_item_selected(index: int) -> void:
 	Globals.deck_style_index = index
+	var settings = ConfigFile.new()
+	settings.set_value("settings", "deck_style_index", index)
+	settings.save("user://settings.cfg")
 
 
 func _on_credits_pressed() -> void:
@@ -26,4 +29,8 @@ func _on_menu_pressed() -> void:
 
 
 func _on_resume_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/"+Globals.current_game+".tscn")
+	if FileAccess.file_exists("user://saved_"+Globals.current_game+".tscn"):
+		var scene = ResourceLoader.load("user://saved_"+Globals.current_game+".tscn")
+		get_tree().change_scene_to_packed(scene)
+	else:
+		get_tree().change_scene_to_file("res://scenes/"+Globals.current_game+".tscn")

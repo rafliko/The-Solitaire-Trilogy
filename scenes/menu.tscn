@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://oa6vmblx6e6l"]
+[gd_scene load_steps=4 format=3 uid="uid://dkipykh0lmsks"]
 
 [ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_2ivvv"]
-[ext_resource type="Script" path="res://scripts/menu.gd" id="1_lo5up"]
+[ext_resource type="Script" uid="uid://cdlmmmt5iir8t" path="res://scripts/menu.gd" id="1_lo5up"]
 [ext_resource type="Texture2D" uid="uid://c0pa4g3k31bcc" path="res://sprites/decks/anglo.png" id="2_amoyf"]
-[ext_resource type="PackedScene" uid="uid://o0y5aak1vqn3" path="res://scenes/settings_button.tscn" id="4_jlvex"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -69,11 +68,14 @@ centered = false
 region_enabled = true
 region_rect = Rect2(2400, 600, 200, 300)
 
-[node name="settings_button" parent="." instance=ExtResource("4_jlvex")]
+[node name="settings_button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1152.0
 offset_top = 32.0
 offset_right = 1248.0
 offset_bottom = 128.0
+theme_override_font_sizes/font_size = 40
+text = " ⚙️ "
 
 [connection signal="pressed" from="freecell" to="." method="_on_freecell_pressed"]
+[connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]

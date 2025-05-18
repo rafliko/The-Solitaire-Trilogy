@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://by0ihd2bid8gf"]
 
 [ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_gxw7t"]
-[ext_resource type="Script" path="res://scripts/credits.gd" id="1_jbth0"]
+[ext_resource type="Script" uid="uid://dwohid5fnctmv" path="res://scripts/credits.gd" id="1_jbth0"]
 
 [node name="credits" type="Control"]
 layout_mode = 3

@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	load_settings()
 	Globals.current_game = "menu"
 	$card1.texture = load(Globals.deck_styles[Globals.deck_style_index])
 	$card2.texture = load(Globals.deck_styles[Globals.deck_style_index])
@@ -14,4 +15,19 @@ func _process(delta: float) -> void:
 
 
 func _on_freecell_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/freecell.tscn")
+	Globals.current_game = "freecell"
+	if FileAccess.file_exists("user://saved_freecell.tscn"):
+		var scene = ResourceLoader.load("user://saved_freecell.tscn")
+		get_tree().change_scene_to_packed(scene)
+	else:
+		get_tree().change_scene_to_file("res://scenes/freecell.tscn")
+
+
+func _on_settings_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/settings.tscn")
+
+
+func load_settings() -> void:
+	var settings = ConfigFile.new()
+	if settings.load("user://settings.cfg") != OK: return
+	Globals.deck_style_index = settings.get_value("settings", "deck_style_index")

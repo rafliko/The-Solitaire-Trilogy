@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxij5jpdnpk3p"]
 
 [ext_resource type="Texture2D" uid="uid://c0pa4g3k31bcc" path="res://sprites/decks/anglo.png" id="1_grwcr"]
-[ext_resource type="Script" path="res://scripts/card.gd" id="2_xlg5i"]
+[ext_resource type="Script" uid="uid://bg4ps1d64u5os" path="res://scripts/card.gd" id="2_xlg5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8xvw"]
 size = Vector2(200, 300)

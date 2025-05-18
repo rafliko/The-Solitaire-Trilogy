@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://1sx7fp2esk1p"]
+[gd_scene load_steps=6 format=3 uid="uid://1sx7fp2esk1p"]
 
 [ext_resource type="PackedScene" uid="uid://d0nccjelurdr" path="res://scenes/cell.tscn" id="1_0jsml"]
-[ext_resource type="Script" path="res://scripts/freecell.gd" id="1_n6f6j"]
+[ext_resource type="Script" uid="uid://imggvrnsf5no" path="res://scripts/freecell.gd" id="1_n6f6j"]
 [ext_resource type="Texture2D" uid="uid://d3nvcsx62vhjk" path="res://sprites/cell_ace.png" id="2_1or1l"]
-[ext_resource type="PackedScene" uid="uid://o0y5aak1vqn3" path="res://scenes/settings_button.tscn" id="3_mwhnw"]
 [ext_resource type="FontFile" uid="uid://c6wrvggt3r2q7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Regular.ttf" id="4_vrurw"]
 [ext_resource type="FontFile" uid="uid://6sw40coudvm1" path="res://fonts/Crimson_Pro/static/CrimsonPro-BoldItalic.ttf" id="6_2m7ea"]
 
@@ -79,12 +78,6 @@ text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="settings_button" parent="." instance=ExtResource("3_mwhnw")]
-offset_left = 1152.0
-offset_top = 32.0
-offset_right = 1248.0
-offset_bottom = 128.0
-
 [node name="youwin" type="RichTextLabel" parent="."]
 visible = false
 offset_left = 192.0
@@ -97,6 +90,24 @@ bbcode_enabled = true
 text = "[wave amp=100 connected=0]YOU WIN!"
 
 [node name="timer" type="Timer" parent="."]
-autostart = true
+
+[node name="settings_button" type="Button" parent="."]
+offset_left = 1152.0
+offset_top = 32.0
+offset_right = 1248.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 40
+text = " ⚙️ "
+
+[node name="restart_button" type="Button" parent="."]
+offset_left = 1152.0
+offset_top = 160.0
+offset_right = 1248.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("4_vrurw")
+theme_override_font_sizes/font_size = 40
+text = " 🔄 "
 
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="restart_button" to="." method="_on_restart_button_pressed"]
