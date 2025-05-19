@@ -8,6 +8,8 @@ var move_to_foundation = false
 @export var value = 0
 @export var suit = 0
 @export var isdark = false
+@export var is_foundation_card = false
+@export var is_freecell_card = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,32 +39,30 @@ func _on_button_button_down() -> void:
 
 
 func _on_button_button_up() -> void:
-	if new_parent != null: 
+	if new_parent != null:
 		reparent(new_parent)
 	
-	if get_parent() != null:
-		if get_parent().is_in_group("foundations") or get_parent().is_in_group("foundation_cards"):
-			remove_from_group("cards")
-			remove_from_group("freecell_cards")
-			add_to_group("foundation_cards")
+	if dragging:
+		if (get_parent().is_in_group("foundations") or 
+		   (get_parent().is_in_group("cards") and get_parent().is_foundation_card)): # Placed on foundation
+			is_foundation_card = true
+			is_freecell_card = false
 			position = Vector2.ZERO
-		elif get_parent().is_in_group("freecells"):
-			remove_from_group("cards")
-			add_to_group("freecell_cards")
-			remove_from_group("foundation_cards")
+		elif get_parent().is_in_group("freecells"): # Placed on freecell
+			is_foundation_card = false
+			is_freecell_card = true
 			position = Vector2.ZERO
-		elif get_parent().is_in_group("cards"): 
-			add_to_group("cards")
-			remove_from_group("freecell_cards")
-			remove_from_group("foundation_cards")
+		elif get_parent().is_in_group("columns"):  # Placed on column
+			is_foundation_card = false
+			is_freecell_card = false
+			position = Vector2.ZERO
+		elif get_parent().is_in_group("cards"): # Placed on card
+			is_foundation_card = false
+			is_freecell_card = false
 			position = Vector2(0, Globals.default_offset)
-		else: 
-			add_to_group("cards")
-			remove_from_group("freecell_cards")
-			remove_from_group("foundation_cards")
-			position = Vector2.ZERO
-	z_index = 0
-	dragging = false
+		
+		z_index = 0
+		dragging = false
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

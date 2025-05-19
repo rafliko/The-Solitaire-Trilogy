@@ -34,8 +34,6 @@ cards=""
 columns=""
 freecells=""
 foundations=""
-foundation_cards=""
-freecell_cards=""
 
 [rendering]
 
