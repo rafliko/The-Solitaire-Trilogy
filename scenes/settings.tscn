@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnb37gs7j3m0l"]
+[gd_scene load_steps=7 format=3 uid="uid://dnb37gs7j3m0l"]
 
 [ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_otm1p"]
 [ext_resource type="Script" uid="uid://bccetd7qu8vy3" path="res://scripts/settings.gd" id="1_q6dhs"]
 [ext_resource type="Texture2D" uid="uid://dtfwcb0sb1nys" path="res://sprites/decks/anglo_thumb.png" id="2_wgrb7"]
 [ext_resource type="Texture2D" uid="uid://cqplbnmb605lq" path="res://sprites/decks/adler_thumb.png" id="3_esysf"]
 [ext_resource type="Texture2D" uid="uid://bqi0pn5ofbvyi" path="res://sprites/decks/atlasnye_thumb.png" id="4_tg80b"]
+[ext_resource type="Texture2D" uid="uid://bx7ua7av5li7c" path="res://sprites/decks/veteris_artem_thumb.png" id="6_gis3k"]
 
 [node name="settings" type="Control"]
 layout_mode = 3
@@ -44,7 +45,7 @@ offset_bottom = 96.0
 theme_override_fonts/font = ExtResource("1_otm1p")
 theme_override_font_sizes/font_size = 50
 selected = 0
-item_count = 3
+item_count = 4
 popup/item_0/text = " Anglo"
 popup/item_0/icon = ExtResource("2_wgrb7")
 popup/item_0/id = 0
@@ -54,6 +55,9 @@ popup/item_1/id = 1
 popup/item_2/text = " Atlasnye"
 popup/item_2/icon = ExtResource("4_tg80b")
 popup/item_2/id = 2
+popup/item_3/text = "Veteris Artem"
+popup/item_3/icon = ExtResource("6_gis3k")
+popup/item_3/id = 3
 
 [node name="credits" type="Button" parent="."]
 layout_mode = 0

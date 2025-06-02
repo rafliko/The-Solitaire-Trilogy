@@ -156,6 +156,12 @@ https://gallica.bnf.fr/ark:/12148/btv1b10511180c
 https://gallica.bnf.fr/ark:/12148/btv1b105093277
 
 
+-------------------------------------------------------------------------------------
+
+
+Veteris Artem deck by Dawid Cebrat
+
+
 -------------------------------------------------------------------------------------"
 
 [connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]

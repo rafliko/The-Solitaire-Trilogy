@@ -8,6 +8,7 @@ var current_game = "menu"
 var deck_styles = [
 	"res://sprites/decks/anglo.png", 
 	"res://sprites/decks/adler.png", 
-	"res://sprites/decks/atlasnye.png"
+	"res://sprites/decks/atlasnye.png",
+	"res://sprites/decks/veteris_artem.png"
 ]
 var deck_style_index = 0
