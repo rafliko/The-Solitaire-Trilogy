@@ -23,6 +23,15 @@ func _on_freecell_pressed() -> void:
 		get_tree().change_scene_to_file("res://scenes/freecell.tscn")
 
 
+func _on_klondike_pressed() -> void:
+	Globals.current_game = "klondike"
+	if FileAccess.file_exists("user://saved_klondike.tscn"):
+		var scene = ResourceLoader.load("user://saved_klondike.tscn")
+		get_tree().change_scene_to_packed(scene)
+	else:
+		get_tree().change_scene_to_file("res://scenes/klondike.tscn")
+
+
 func _on_settings_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/settings.tscn")
 

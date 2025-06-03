@@ -3,35 +3,45 @@ extends Sprite2D
 var dragging = false
 var mouse_offset = Vector2.ZERO
 var new_parent = null
-var move_to_foundation = false
 
+@export var move_to_foundation = false
 @export var value = 0
 @export var suit = 0
 @export var isdark = false
 @export var is_foundation_card = false
 @export var is_freecell_card = false
+@export var is_hidden = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	texture = load(Globals.deck_styles[Globals.deck_style_index])
+	if is_hidden: region_rect = Globals.card_back_rect
+	else: region_rect = Rect2(value*Globals.card_width, suit*Globals.card_height, Globals.card_width, Globals.card_height)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if dragging:
 		global_position = get_global_mouse_position() - mouse_offset
+		
 	if move_to_foundation:
+		z_index = 1
 		new_parent = null
 		dragging = false
 		position += position.direction_to(Vector2.ZERO) * delta * 4000
-		if abs(position) < Vector2(20,20): 
+		if abs(position.x) < 20 and abs(position.y) < 20: 
+			z_index = 0
 			position = Vector2.ZERO
 			move_to_foundation = false
 			get_node("/root/"+Globals.current_game).block_autosolve = false
-
+			
+	if is_hidden:
+		if get_child_count() < 3:
+			is_hidden = false
+			region_rect = Rect2(value*Globals.card_width, suit*Globals.card_height, Globals.card_width, Globals.card_height)
 
 func _on_button_button_down() -> void:
-	if get_node("/root/"+Globals.current_game).validate_sequence($"."):
+	if !is_hidden and get_node("/root/"+Globals.current_game).validate_sequence($"."):
 		new_parent = null
 		mouse_offset = get_global_mouse_position() - global_position
 		z_index = 1

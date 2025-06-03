@@ -77,5 +77,6 @@ offset_bottom = 128.0
 theme_override_font_sizes/font_size = 40
 text = " ⚙️ "
 
+[connection signal="pressed" from="klondike" to="." method="_on_klondike_pressed"]
 [connection signal="pressed" from="freecell" to="." method="_on_freecell_pressed"]
 [connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]
