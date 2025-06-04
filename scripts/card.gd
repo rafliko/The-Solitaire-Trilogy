@@ -11,6 +11,7 @@ var new_parent = null
 @export var is_foundation_card = false
 @export var is_freecell_card = false
 @export var is_hidden = false
+@export var is_pile_card = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,23 +54,29 @@ func _on_button_button_up() -> void:
 		reparent(new_parent)
 	
 	if dragging:
-		if (get_parent().is_in_group("foundations") or 
-		   (get_parent().is_in_group("cards") and get_parent().is_foundation_card)): # Placed on foundation
+		if (get_parent().is_in_group("foundations") or # Placed on foundation
+		   (get_parent().is_in_group("cards") and get_parent().is_foundation_card)): # Placed on foundation card
+			is_pile_card = false
 			is_foundation_card = true
 			is_freecell_card = false
 			position = Vector2.ZERO
 		elif get_parent().is_in_group("freecells"): # Placed on freecell
+			is_pile_card = false
 			is_foundation_card = false
 			is_freecell_card = true
 			position = Vector2.ZERO
 		elif get_parent().is_in_group("columns"):  # Placed on column
+			is_pile_card = false
 			is_foundation_card = false
 			is_freecell_card = false
 			position = Vector2.ZERO
-		elif get_parent().is_in_group("cards"): # Placed on card
+		elif get_parent().is_in_group("cards") and !get_parent().is_pile_card: # Placed on a card that isn't a pile card
+			is_pile_card = false
 			is_foundation_card = false
 			is_freecell_card = false
 			position = Vector2(0, Globals.default_offset)
+		else:
+			position = Vector2.ZERO
 		
 		z_index = 0
 		dragging = false

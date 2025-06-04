@@ -102,6 +102,7 @@ func autosolve() -> void:
 					c.reparent(new_parent)
 			else:
 				c.reparent($foundations.get_child(c.suit))
+			c.is_pile_card = false
 			c.is_freecell_card = false
 			c.is_foundation_card = true
 			c.move_to_foundation = true

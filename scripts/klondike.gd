@@ -1,6 +1,6 @@
 extends Node2D
 
-var deck = []
+@export var deck = []
 var card_scene = preload("res://scenes/card.tscn")
 
 var block_autosolve = false
@@ -8,7 +8,8 @@ var block_autosolve = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$deck.texture = load(Globals.deck_styles[Globals.deck_style_index])
+	if $deck.texture != load("res://sprites/deck_refresh.png"):
+		$deck.texture = load(Globals.deck_styles[Globals.deck_style_index])
 	$timer.start()
 	if FileAccess.file_exists("user://saved_klondike.tscn"): return
 	
@@ -44,10 +45,12 @@ func _process(delta: float) -> void:
 
 
 func _on_settings_button_pressed() -> void:
+	save()
 	get_tree().change_scene_to_file("res://scenes/settings.tscn")
 
 
 func _on_restart_button_pressed() -> void:
+	DirAccess.remove_absolute("user://saved_klondike.tscn")
 	get_tree().change_scene_to_file("res://scenes/klondike.tscn")
 
 
@@ -62,6 +65,9 @@ func _on_timer_timeout() -> void:
 
 
 func validate_move(target: Node, parent_card: Node) -> bool:
+	if target.is_in_group("cards") and target.is_pile_card: # Placed on a pile card
+		return false
+	
 	if ((target.get_child_count() < 3 and target.is_in_group("cards") and target.value == parent_card.value+1 and target.isdark != parent_card.isdark) or # All value and suit requirements met
 		(target.is_in_group("columns") and target.get_child_count() == 1 and parent_card.value == 12)): # Empty column
 		return true
@@ -96,6 +102,7 @@ func autosolve() -> void:
 					c.reparent(new_parent)
 			else:
 				c.reparent($foundations.get_child(c.suit))
+			c.is_pile_card = false
 			c.is_freecell_card = false
 			c.is_foundation_card = true
 			c.move_to_foundation = true
@@ -113,4 +120,44 @@ func check_win() -> void:
 
 
 func _on_deck_button_pressed() -> void:
-	pass # Replace with function body.
+	if len(deck) == 0: # Empty deck - refresh
+		while $card_pile.get_child_count() > 0:
+			var top_card = Globals.get_top_card($card_pile.get_child(0))
+			deck.push_back({"value":top_card.value, "suit":top_card.suit})
+			top_card.free()
+		if len(deck) != 0:
+			$deck.texture = load(Globals.deck_styles[Globals.deck_style_index])
+			$deck.region_enabled = true
+		return
+	
+	var drawn_card = deck.pop_back()
+	var card_instance = card_scene.instantiate()
+	card_instance.value = drawn_card.value
+	card_instance.suit = drawn_card.suit
+	card_instance.is_pile_card = true
+	if drawn_card.suit == 0 or drawn_card.suit == 3: card_instance.isdark = true
+	else: card_instance.isdark = false
+	if $card_pile.get_child_count() == 0:
+		$card_pile.add_child(card_instance)
+	else:
+		Globals.get_top_card($card_pile.get_child(0)).add_child(card_instance)
+	
+	if len(deck) == 0: # Last card drawn
+		$deck.texture = load("res://sprites/deck_refresh.png")
+		$deck.region_enabled = false
+
+
+func save() -> void:
+	var scene = PackedScene.new()
+	for c in get_tree().get_nodes_in_group("cards"):
+		c.set_owner(self)
+	scene.pack(self);
+	ResourceSaver.save(scene, "user://saved_klondike.tscn")
+
+
+func _notification(what: int) -> void:
+	if (what == NOTIFICATION_WM_CLOSE_REQUEST or 
+		what == NOTIFICATION_APPLICATION_PAUSED or 
+		what == NOTIFICATION_WM_GO_BACK_REQUEST):
+		save() # Save when quitting
+		get_tree().quit()

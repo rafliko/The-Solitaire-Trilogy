@@ -23,6 +23,10 @@ self_modulate = Color(1, 1, 1, 0)
 offset_right = 200.0
 offset_bottom = 300.0
 
+[node name="card_pile" type="Node2D" parent="."]
+position = Vector2(288, 32)
+scale = Vector2(0.5, 0.5)
+
 [node name="foundations" type="Node2D" parent="."]
 
 [node name="ac1" parent="foundations" groups=["foundations"] instance=ExtResource("2_udaix")]
