@@ -21,14 +21,14 @@ func _ready() -> void:
 	print(deck)
 	
 	# Deal the cards
-	var range = null
+	var r = 0
 	for i in range(8):
 		var parent = $columns.get_child(i)
 		
-		if i < 4: range = range(7)
-		else: range = range(6)
+		if i < 4: r = 7
+		else: r = 6
 		
-		for j in range:
+		for j in range(r):
 			var drawn_card = deck.pop_back()
 			var card_instance = card_scene.instantiate()
 			card_instance.value = drawn_card.value

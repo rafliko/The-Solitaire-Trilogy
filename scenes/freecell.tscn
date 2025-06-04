@@ -68,10 +68,10 @@ position = Vector2(928, 32)
 texture = ExtResource("2_1or1l")
 
 [node name="timer_label" type="Label" parent="."]
-offset_left = 1088.0
-offset_top = 608.0
-offset_right = 1248.0
-offset_bottom = 672.0
+offset_left = 1120.0
+offset_top = 640.0
+offset_right = 1280.0
+offset_bottom = 704.0
 theme_override_fonts/font = ExtResource("4_vrurw")
 theme_override_font_sizes/font_size = 50
 text = "00:00"

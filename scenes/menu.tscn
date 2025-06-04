@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cdlmmmt5iir8t" path="res://scripts/menu.gd" id="1_lo5up"]
 [ext_resource type="Texture2D" uid="uid://c0pa4g3k31bcc" path="res://sprites/decks/anglo.png" id="2_amoyf"]
 
-[node name="Menu" type="Control"]
+[node name="menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,4 +79,5 @@ text = " ⚙️ "
 
 [connection signal="pressed" from="klondike" to="." method="_on_klondike_pressed"]
 [connection signal="pressed" from="freecell" to="." method="_on_freecell_pressed"]
+[connection signal="pressed" from="spider" to="." method="_on_spider_pressed"]
 [connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]

@@ -32,6 +32,15 @@ func _on_klondike_pressed() -> void:
 		get_tree().change_scene_to_file("res://scenes/klondike.tscn")
 
 
+func _on_spider_pressed() -> void:
+	Globals.current_game = "spider"
+	if FileAccess.file_exists("user://saved_spider.tscn"):
+		var scene = ResourceLoader.load("user://saved_spider.tscn")
+		get_tree().change_scene_to_packed(scene)
+	else:
+		get_tree().change_scene_to_file("res://scenes/spider.tscn")
+
+
 func _on_settings_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/settings.tscn")
 

@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcmpqchdvaxkv"]
+
+[ext_resource type="Script" uid="uid://n6b6fo7ikxhm" path="res://scripts/spider.gd" id="1_k5hg5"]
+[ext_resource type="FontFile" uid="uid://c6wrvggt3r2q7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Regular.ttf" id="2_d613k"]
+[ext_resource type="PackedScene" uid="uid://d0nccjelurdr" path="res://scenes/cell.tscn" id="2_evcmw"]
+[ext_resource type="Texture2D" uid="uid://c0pa4g3k31bcc" path="res://sprites/decks/anglo.png" id="2_txxy0"]
+[ext_resource type="FontFile" uid="uid://6sw40coudvm1" path="res://fonts/Crimson_Pro/static/CrimsonPro-BoldItalic.ttf" id="3_evcmw"]
+
+[node name="spider" type="Node2D"]
+script = ExtResource("1_k5hg5")
+
+[node name="deck" type="Node2D" parent="."]
+
+[node name="Button" type="Button" parent="deck"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1152.0
+offset_top = 320.0
+offset_right = 1252.0
+offset_bottom = 534.0
+
+[node name="c1" type="Sprite2D" parent="deck"]
+position = Vector2(1152, 320)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_txxy0")
+centered = false
+region_enabled = true
+region_rect = Rect2(400, 1200, 200, 300)
+
+[node name="c2" type="Sprite2D" parent="deck"]
+position = Vector2(1152, 336)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_txxy0")
+centered = false
+region_enabled = true
+region_rect = Rect2(400, 1200, 200, 300)
+
+[node name="c3" type="Sprite2D" parent="deck"]
+position = Vector2(1152, 352)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_txxy0")
+centered = false
+region_enabled = true
+region_rect = Rect2(400, 1200, 200, 300)
+
+[node name="c4" type="Sprite2D" parent="deck"]
+position = Vector2(1152, 368)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_txxy0")
+centered = false
+region_enabled = true
+region_rect = Rect2(400, 1200, 200, 300)
+
+[node name="c5" type="Sprite2D" parent="deck"]
+position = Vector2(1152, 384)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_txxy0")
+centered = false
+region_enabled = true
+region_rect = Rect2(400, 1200, 200, 300)
+
+[node name="columns" type="Node2D" parent="."]
+
+[node name="col1" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(16, 32)
+
+[node name="col2" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(128, 32)
+
+[node name="col3" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(240, 32)
+
+[node name="col4" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(352, 32)
+
+[node name="col5" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(464, 32)
+
+[node name="col6" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(576, 32)
+
+[node name="col7" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(688, 32)
+
+[node name="col8" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(800, 32)
+
+[node name="col9" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(912, 32)
+
+[node name="col10" parent="columns" groups=["columns"] instance=ExtResource("2_evcmw")]
+position = Vector2(1024, 32)
+
+[node name="timer_label" type="Label" parent="."]
+offset_left = 1120.0
+offset_top = 640.0
+offset_right = 1280.0
+offset_bottom = 704.0
+theme_override_fonts/font = ExtResource("2_d613k")
+theme_override_font_sizes/font_size = 50
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="youwin" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 192.0
+offset_top = 448.0
+offset_right = 896.0
+offset_bottom = 640.0
+theme_override_fonts/normal_font = ExtResource("3_evcmw")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[wave amp=100 connected=0]YOU WIN!"
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="settings_button" type="Button" parent="."]
+offset_left = 1152.0
+offset_top = 32.0
+offset_right = 1248.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 40
+text = " ⚙️ "
+
+[node name="restart_button" type="Button" parent="."]
+offset_left = 1152.0
+offset_top = 160.0
+offset_right = 1248.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("2_d613k")
+theme_override_font_sizes/font_size = 40
+text = " 🔄 "
+
+[connection signal="pressed" from="deck/Button" to="." method="_on_deck_button_pressed"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="restart_button" to="." method="_on_restart_button_pressed"]

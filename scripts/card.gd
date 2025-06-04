@@ -50,7 +50,7 @@ func _on_button_button_down() -> void:
 
 
 func _on_button_button_up() -> void:
-	if new_parent != null:
+	if new_parent != null and new_parent!=self:
 		reparent(new_parent)
 	
 	if dragging:
@@ -74,7 +74,10 @@ func _on_button_button_up() -> void:
 			is_pile_card = false
 			is_foundation_card = false
 			is_freecell_card = false
-			position = Vector2(0, Globals.default_offset)
+			if Globals.current_game == "spider":
+				position = Vector2(0, Globals.default_offset_spider)
+			else:
+				position = Vector2(0, Globals.default_offset)
 		else:
 			position = Vector2.ZERO
 		
