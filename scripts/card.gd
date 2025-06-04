@@ -3,6 +3,7 @@ extends Sprite2D
 var dragging = false
 var mouse_offset = Vector2.ZERO
 var new_parent = null
+const move_speed = 4000
 
 @export var move_to_foundation = false
 @export var value = 0
@@ -29,8 +30,8 @@ func _process(delta: float) -> void:
 		z_index = 1
 		new_parent = null
 		dragging = false
-		position += position.direction_to(Vector2.ZERO) * delta * 4000
-		if abs(position.x) < 20 and abs(position.y) < 20: 
+		position += position.direction_to(Vector2.ZERO) * delta * move_speed
+		if abs(position.x) < delta * move_speed and abs(position.y) < delta * move_speed: 
 			z_index = 0
 			position = Vector2.ZERO
 			move_to_foundation = false
