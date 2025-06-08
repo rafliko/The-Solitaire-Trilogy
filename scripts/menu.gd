@@ -13,8 +13,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	t+=delta
-	$card1.rotation = sin(t*2)/5
-	$card2.rotation = sin(t*2-PI)/5
+	$card1.rotation = sin(t)/10
+	$card2.rotation = sin(t-PI)/10
+	$card1.scale = Vector2(1,1) * (sin(t*2)/30 + 1)
+	$card2.scale = Vector2(1,1) * (sin(t*2-PI)/30 + 1)
 
 
 func _on_freecell_pressed() -> void:
@@ -56,3 +58,11 @@ func load_settings() -> void:
 
 func _on_rules_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/rules.tscn")
+
+
+func _on_credits_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/credits.tscn")
+
+
+func _on_stats_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/stats.tscn")

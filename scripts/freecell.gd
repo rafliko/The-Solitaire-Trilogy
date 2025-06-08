@@ -115,7 +115,9 @@ func check_win() -> void:
 		if f.get_child_count()>1 and Globals.count_sequence(f.get_child(1), 1) == 13:
 			count+=1
 	if count == 4:
-		$youwin.visible = true
+		if not $youwin.visible:
+			update_stats()
+			$youwin.visible = true
 		$timer.stop()
 
 
@@ -152,3 +154,15 @@ func _notification(what: int) -> void:
 		what == NOTIFICATION_WM_GO_BACK_REQUEST):
 		save() # Save when quitting
 		get_tree().quit()
+
+
+func update_stats() -> void:
+	var settings = ConfigFile.new()
+	settings.load("user://settings.cfg")
+	var w = settings.get_value("stats", "freecell_games_won")
+	if w == null: w = 0
+	settings.set_value("stats", "freecell_games_won", w+1)
+	var bt = settings.get_value("stats", "freecell_best_time")
+	if bt == null: bt = INF
+	if t < bt: settings.set_value("stats", "freecell_best_time", t)
+	settings.save("user://settings.cfg")

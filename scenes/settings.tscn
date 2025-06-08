@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dnb37gs7j3m0l"]
 
-[ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_otm1p"]
 [ext_resource type="Script" uid="uid://bccetd7qu8vy3" path="res://scripts/settings.gd" id="1_q6dhs"]
+[ext_resource type="FontFile" uid="uid://c6wrvggt3r2q7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Regular.ttf" id="2_gis3k"]
 [ext_resource type="Texture2D" uid="uid://dtfwcb0sb1nys" path="res://sprites/decks/anglo_thumb.png" id="2_wgrb7"]
 [ext_resource type="Texture2D" uid="uid://cqplbnmb605lq" path="res://sprites/decks/adler_thumb.png" id="3_esysf"]
 [ext_resource type="Texture2D" uid="uid://bqi0pn5ofbvyi" path="res://sprites/decks/atlasnye_thumb.png" id="4_tg80b"]
@@ -20,9 +20,9 @@ script = ExtResource("1_q6dhs")
 layout_mode = 0
 offset_left = 480.0
 offset_top = 32.0
-offset_right = 776.0
+offset_right = 804.0
 offset_bottom = 144.0
-theme_override_fonts/font = ExtResource("1_otm1p")
+theme_override_fonts/font = ExtResource("2_gis3k")
 theme_override_font_sizes/font_size = 100
 text = "Settings"
 horizontal_alignment = 1
@@ -33,16 +33,17 @@ offset_left = 288.0
 offset_top = 192.0
 offset_right = 557.0
 offset_bottom = 288.0
-theme_override_fonts/font = ExtResource("1_otm1p")
-theme_override_font_sizes/font_size = 66
+theme_override_fonts/font = ExtResource("2_gis3k")
+theme_override_font_sizes/font_size = 60
 text = "Deck style: "
+vertical_alignment = 1
 
 [node name="deck_style_option" type="OptionButton" parent="deck_style"]
 layout_mode = 0
 offset_left = 288.0
 offset_right = 704.0
 offset_bottom = 96.0
-theme_override_fonts/font = ExtResource("1_otm1p")
+theme_override_fonts/font = ExtResource("2_gis3k")
 theme_override_font_sizes/font_size = 50
 selected = 0
 item_count = 4
@@ -59,15 +60,15 @@ popup/item_3/text = "Veteris Artem"
 popup/item_3/icon = ExtResource("6_gis3k")
 popup/item_3/id = 3
 
-[node name="credits" type="Button" parent="."]
+[node name="resume" type="Button" parent="."]
 layout_mode = 0
 offset_left = 288.0
-offset_top = 576.0
+offset_top = 320.0
 offset_right = 992.0
-offset_bottom = 672.0
-theme_override_fonts/font = ExtResource("1_otm1p")
+offset_bottom = 416.0
+theme_override_fonts/font = ExtResource("2_gis3k")
 theme_override_font_sizes/font_size = 60
-text = "Credits"
+text = "Resume"
 
 [node name="menu" type="Button" parent="."]
 layout_mode = 0
@@ -75,21 +76,25 @@ offset_left = 288.0
 offset_top = 448.0
 offset_right = 992.0
 offset_bottom = 544.0
-theme_override_fonts/font = ExtResource("1_otm1p")
+theme_override_fonts/font = ExtResource("2_gis3k")
 theme_override_font_sizes/font_size = 60
 text = "Back to menu"
 
-[node name="resume" type="Button" parent="."]
+[node name="clear_saves" type="Button" parent="."]
 layout_mode = 0
 offset_left = 288.0
-offset_top = 320.0
+offset_top = 576.0
 offset_right = 992.0
-offset_bottom = 416.0
-theme_override_fonts/font = ExtResource("1_otm1p")
+offset_bottom = 672.0
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gis3k")
 theme_override_font_sizes/font_size = 60
-text = "Resume"
+text = "Clear save data"
 
 [connection signal="item_selected" from="deck_style/deck_style_option" to="." method="_on_deck_style_option_item_selected"]
-[connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="clear_saves" to="." method="_on_clear_saves_pressed"]

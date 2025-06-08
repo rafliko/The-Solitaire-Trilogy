@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://by0ihd2bid8gf"]
 
-[ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_gxw7t"]
 [ext_resource type="Script" uid="uid://dwohid5fnctmv" path="res://scripts/credits.gd" id="1_jbth0"]
+[ext_resource type="FontFile" uid="uid://c6wrvggt3r2q7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Regular.ttf" id="2_2ckv8"]
 
 [node name="credits" type="Control"]
 layout_mode = 3
@@ -27,7 +27,7 @@ offset_left = 480.0
 offset_top = 32.0
 offset_right = 776.0
 offset_bottom = 144.0
-theme_override_fonts/font = ExtResource("1_gxw7t")
+theme_override_fonts/font = ExtResource("2_2ckv8")
 theme_override_font_sizes/font_size = 100
 text = "Credits"
 horizontal_alignment = 1
@@ -38,12 +38,9 @@ offset_left = 32.0
 offset_top = 192.0
 offset_right = 1248.0
 offset_bottom = 672.0
-theme_override_fonts/normal_font = ExtResource("1_gxw7t")
+theme_override_fonts/normal_font = ExtResource("2_2ckv8")
 theme_override_font_sizes/normal_font_size = 30
-text = "-------------------------------------------------------------------------------------
-
-
-Anglo SVG card deck for AisleRiot
+text = "Anglo SVG card deck for AisleRiot
 
 An \"English pattern\" card deck, English index letters, Bridge-sized cards.
 
@@ -159,9 +156,6 @@ https://gallica.bnf.fr/ark:/12148/btv1b105093277
 -------------------------------------------------------------------------------------
 
 
-Veteris Artem deck by Dawid Cebrat
-
-
--------------------------------------------------------------------------------------"
+Veteris Artem deck by Dawid Cebrat"
 
 [connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]

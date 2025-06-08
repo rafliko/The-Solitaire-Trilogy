@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bclil8dlfq7vu"]
+[gd_scene load_steps=3 format=3 uid="uid://bclil8dlfq7vu"]
 
-[ext_resource type="FontFile" uid="uid://ddlpharl1y2f7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Italic.ttf" id="1_3spy8"]
 [ext_resource type="Script" uid="uid://jm34a352rnf6" path="res://scripts/rules.gd" id="1_66h5d"]
-[ext_resource type="FontFile" uid="uid://bh1ohmkym3u4y" path="res://fonts/Crimson_Pro/CrimsonPro-Italic-VariableFont_wght.ttf" id="3_1m7fe"]
+[ext_resource type="FontFile" uid="uid://c6wrvggt3r2q7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Regular.ttf" id="2_66h5d"]
 
 [node name="rules" type="Control"]
 layout_mode = 3
@@ -17,12 +16,12 @@ offset_bottom = 128.0
 theme_override_font_sizes/font_size = 40
 text = " ❌ "
 
-[node name="credits" type="Label" parent="."]
+[node name="rules" type="Label" parent="."]
 offset_left = 480.0
 offset_top = 32.0
 offset_right = 776.0
 offset_bottom = 144.0
-theme_override_fonts/font = ExtResource("1_3spy8")
+theme_override_fonts/font = ExtResource("2_66h5d")
 theme_override_font_sizes/font_size = 100
 text = "Rules"
 horizontal_alignment = 1
@@ -32,10 +31,14 @@ offset_left = 32.0
 offset_top = 320.0
 offset_right = 1248.0
 offset_bottom = 672.0
-theme_override_fonts/normal_font = ExtResource("3_1m7fe")
+theme_override_fonts/normal_font = ExtResource("2_66h5d")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️🐻‍❄️👑🕸️"
+text = "Click on the buttons above to learn how to play each variant.
+
+Patience (Europe), card solitaire, or solitaire (US/Canada), is a genre of card games whose common feature is that the aim is to arrange the cards in some systematic order or, in a few cases, to pair them off in order to discard them. Most are intended for play by a single player, but there are varieties for two or more players.
+
+Source: [url]https://en.wikipedia.org/wiki/Patience_(game)[/url]"
 
 [node name="klondike_button" type="Button" parent="."]
 layout_mode = 0
@@ -43,6 +46,7 @@ offset_left = 160.0
 offset_top = 192.0
 offset_right = 416.0
 offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("2_66h5d")
 theme_override_font_sizes/font_size = 40
 text = "Klondike"
 
@@ -52,6 +56,7 @@ offset_left = 512.0
 offset_top = 192.0
 offset_right = 768.0
 offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("2_66h5d")
 theme_override_font_sizes/font_size = 40
 text = "FreeCell"
 
@@ -61,6 +66,7 @@ offset_left = 864.0
 offset_top = 192.0
 offset_right = 1120.0
 offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("2_66h5d")
 theme_override_font_sizes/font_size = 40
 text = "Spider"
 

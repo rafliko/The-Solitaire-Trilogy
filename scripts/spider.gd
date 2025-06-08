@@ -110,8 +110,10 @@ func check_win() -> void:
 	for col in $columns.get_children():
 		if col.get_child_count() == 1:
 			count+=1
-	if count == 10:
-		$youwin.visible = true
+	if count == 10 and len(deck)==0:
+		if not $youwin.visible:
+			update_stats()
+			$youwin.visible = true
 		$timer.stop()
 
 
@@ -136,3 +138,15 @@ func _notification(what: int) -> void:
 		what == NOTIFICATION_WM_GO_BACK_REQUEST):
 		save() # Save when quitting
 		get_tree().quit()
+
+
+func update_stats() -> void:
+	var settings = ConfigFile.new()
+	settings.load("user://settings.cfg")
+	var w = settings.get_value("stats", "spider_games_won")
+	if w == null: w = 0
+	settings.set_value("stats", "spider_games_won", w+1)
+	var bt = settings.get_value("stats", "spider_best_time")
+	if bt == null: bt = INF
+	if t < bt: settings.set_value("stats", "spider_best_time", t)
+	settings.save("user://settings.cfg")

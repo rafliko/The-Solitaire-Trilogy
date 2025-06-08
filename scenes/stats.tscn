@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckpr2e8u5sk4"]
+
+[ext_resource type="Script" uid="uid://c4uq278q1v7lt" path="res://scripts/stats.gd" id="1_fk87l"]
+[ext_resource type="FontFile" uid="uid://c6wrvggt3r2q7" path="res://fonts/Crimson_Pro/static/CrimsonPro-Regular.ttf" id="2_s45by"]
+
+[node name="stats" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fk87l")
+
+[node name="exit_button" type="Button" parent="."]
+offset_left = 1152.0
+offset_top = 32.0
+offset_right = 1248.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 40
+text = " ❌ "
+
+[node name="stats" type="Label" parent="."]
+offset_left = 480.0
+offset_top = 32.0
+offset_right = 776.0
+offset_bottom = 144.0
+theme_override_fonts/font = ExtResource("2_s45by")
+theme_override_font_sizes/font_size = 100
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="klondike_stats" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 416.0
+offset_bottom = 640.0
+theme_override_colors/guide_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_s45by")
+theme_override_font_sizes/font_size = 40
+item_count = 3
+item_0/text = "Klondike"
+item_0/selectable = false
+item_1/text = "Best time: 00:00"
+item_1/selectable = false
+item_2/text = "Games won: 0"
+item_2/selectable = false
+
+[node name="freecell_stats" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 832.0
+offset_bottom = 640.0
+theme_override_colors/guide_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_s45by")
+theme_override_font_sizes/font_size = 40
+item_count = 3
+item_0/text = "FreeCell"
+item_0/selectable = false
+item_1/text = "Best time: 00:00"
+item_1/selectable = false
+item_2/text = "Games won: 0"
+item_2/selectable = false
+
+[node name="spider_stats" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 192.0
+offset_right = 1248.0
+offset_bottom = 640.0
+theme_override_colors/guide_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_s45by")
+theme_override_font_sizes/font_size = 40
+item_count = 3
+item_0/text = "Spider"
+item_0/selectable = false
+item_1/text = "Best time: 00:00"
+item_1/selectable = false
+item_2/text = "Games won: 0"
+item_2/selectable = false
+
+[node name="deco1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 352.0
+offset_right = 416.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 200
+text = " 🐻‍❄ "
+
+[node name="deco2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 352.0
+offset_right = 832.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 200
+text = " 👑 "
+
+[node name="deco3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 352.0
+offset_right = 1248.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 200
+text = " 🕸️ "
+
+[connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]

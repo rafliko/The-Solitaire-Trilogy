@@ -16,12 +16,9 @@ func _process(delta: float) -> void:
 func _on_deck_style_option_item_selected(index: int) -> void:
 	Globals.deck_style_index = index
 	var settings = ConfigFile.new()
+	settings.load("user://settings.cfg")
 	settings.set_value("settings", "deck_style_index", index)
 	settings.save("user://settings.cfg")
-
-
-func _on_credits_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 
 func _on_menu_pressed() -> void:
@@ -34,3 +31,13 @@ func _on_resume_pressed() -> void:
 		get_tree().change_scene_to_packed(scene)
 	else:
 		get_tree().change_scene_to_file("res://scenes/"+Globals.current_game+".tscn")
+
+
+func _on_clear_saves_pressed() -> void:
+	DirAccess.remove_absolute("user://saved_klondike.tscn")
+	DirAccess.remove_absolute("user://saved_freecell.tscn")
+	DirAccess.remove_absolute("user://saved_spider.tscn")
+	var settings = ConfigFile.new()
+	settings.load("user://settings.cfg")
+	settings.erase_section("stats")
+	settings.save("user://settings.cfg")

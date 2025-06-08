@@ -101,9 +101,9 @@ text = " ⚙️ "
 
 [node name="restart_button" type="Button" parent="."]
 offset_left = 1152.0
-offset_top = 160.0
+offset_top = 144.0
 offset_right = 1248.0
-offset_bottom = 256.0
+offset_bottom = 240.0
 theme_override_fonts/font = ExtResource("4_vrurw")
 theme_override_font_sizes/font_size = 40
 text = " 🔄 "
