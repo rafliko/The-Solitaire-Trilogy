@@ -1,5 +1,6 @@
 extends Control
 
+var t = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,7 +12,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	t+=delta
+	$card1.rotation = sin(t*2)/5
+	$card2.rotation = sin(t*2-PI)/5
 
 
 func _on_freecell_pressed() -> void:
@@ -49,3 +52,7 @@ func load_settings() -> void:
 	var settings = ConfigFile.new()
 	if settings.load("user://settings.cfg") != OK: return
 	Globals.deck_style_index = settings.get_value("settings", "deck_style_index")
+
+
+func _on_rules_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/rules.tscn")

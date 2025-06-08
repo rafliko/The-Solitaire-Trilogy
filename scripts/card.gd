@@ -51,7 +51,7 @@ func _on_button_button_down() -> void:
 
 
 func _on_button_button_up() -> void:
-	if new_parent != null and new_parent!=self:
+	if new_parent != null and new_parent != get_parent():
 		reparent(new_parent)
 	
 	if dragging:

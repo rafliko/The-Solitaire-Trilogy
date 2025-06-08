@@ -55,16 +55,14 @@ theme_override_font_sizes/font_size = 60
 text = "🕸️ Spider 🕸️"
 
 [node name="card1" type="Sprite2D" parent="."]
-position = Vector2(96, 288)
+position = Vector2(192, 448)
 texture = ExtResource("2_amoyf")
-centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 200, 300)
 
 [node name="card2" type="Sprite2D" parent="."]
-position = Vector2(992, 288)
+position = Vector2(1088, 448)
 texture = ExtResource("2_amoyf")
-centered = false
 region_enabled = true
 region_rect = Rect2(2400, 600, 200, 300)
 
@@ -77,7 +75,17 @@ offset_bottom = 128.0
 theme_override_font_sizes/font_size = 40
 text = " ⚙️ "
 
+[node name="rules_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 40
+text = " ❔ "
+
 [connection signal="pressed" from="klondike" to="." method="_on_klondike_pressed"]
 [connection signal="pressed" from="freecell" to="." method="_on_freecell_pressed"]
 [connection signal="pressed" from="spider" to="." method="_on_spider_pressed"]
 [connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="rules_button" to="." method="_on_rules_button_pressed"]
