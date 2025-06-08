@@ -84,6 +84,15 @@ offset_bottom = 128.0
 theme_override_font_sizes/font_size = 40
 text = " ❔ "
 
+[node name="version" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1216.0
+offset_top = 688.0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_font_sizes/font_size = 20
+text = "v1.0.2"
+
 [connection signal="pressed" from="klondike" to="." method="_on_klondike_pressed"]
 [connection signal="pressed" from="freecell" to="." method="_on_freecell_pressed"]
 [connection signal="pressed" from="spider" to="." method="_on_spider_pressed"]
