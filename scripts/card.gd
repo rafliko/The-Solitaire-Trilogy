@@ -51,10 +51,10 @@ func _on_button_button_down() -> void:
 
 
 func _on_button_button_up() -> void:
-	if new_parent != null and new_parent != get_parent():
-		reparent(new_parent)
-	
 	if dragging:
+		if new_parent != null and new_parent != get_parent():
+			reparent(new_parent)
+			
 		if (get_parent().is_in_group("foundations") or # Placed on foundation
 		   (get_parent().is_in_group("cards") and get_parent().is_foundation_card)): # Placed on foundation card
 			is_pile_card = false
